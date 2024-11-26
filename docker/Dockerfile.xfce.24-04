@@ -6,10 +6,10 @@ ARG ARG_MERGE_STAGE_BROWSER_BASE=merge_stage_vnc
 ARG ARG_FINAL_STAGE_BASE=merge_stage_browser
 
 ARG ARG_HEADLESS_USER_ID=1001
-ARG ARG_HEADLESS_USER_NAME=headless
+ARG ARG_HEADLESS_USER_NAME=util01
 ARG ARG_HEADLESS_USER_GROUP_ID=1001
-ARG ARG_HEADLESS_USER_GROUP_NAME=headless
-ARG ARG_SUDO_INITIAL_PW=headless
+ARG ARG_HEADLESS_USER_GROUP_NAME=util01
+ARG ARG_SUDO_INITIAL_PW=mot2passe
 
 
 ###############
@@ -117,6 +117,28 @@ RUN \
         "${ARG_FEATURES_SCREENSHOOTING:+ristretto}" \
         "${ARG_FEATURES_SCREENSHOOTING:+xfce4-screenshooter}" \
         "${ARG_FEATURES_THUMBNAILING:+tumbler}"
+
+
+RUN \
+     DEBIAN_FRONTEND=noninteractive apt update \
+    && apt install -y --no-install-recommends --allow-unauthenticated \
+        unzip meld vim mc htop screen wget xdg-utils fonts-liberation gedit gnumeric abiword gimp 
+
+RUN \
+     DEBIAN_FRONTEND=noninteractive apt update \
+    && apt install -y --no-install-recommends --allow-unauthenticated \
+        slashem-sdl cataclysm-dda-sdl \
+    && apt autoclean -y \
+    && apt autoremove -y \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN DEBIAN_FRONTEND=noninteractive apt update && apt-get install -y --no-install-recommends --allow-unauthenticated software-properties-common 
+
+RUN wget -O- http://debian.drdteam.org/drdteam.gpg | apt-key add -    
+RUN apt-add-repository 'deb http://debian.drdteam.org/ stable multiverse' && apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y slade
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y eureka wadc deutex zandronum
 
 
 #############
