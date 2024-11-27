@@ -127,7 +127,7 @@ RUN \
 RUN \
      DEBIAN_FRONTEND=noninteractive apt update \
     && apt install -y --no-install-recommends --allow-unauthenticated \
-        slashem-sdl cataclysm-dda-sdl \
+        slashem-sdl cataclysm-dda-sdl nethack-x11 slashem-sdl angband angband-data angband-audio \
     && apt autoclean -y \
     && apt autoremove -y \
     && rm -rf /var/lib/apt/lists/*
@@ -138,8 +138,14 @@ RUN wget -O- http://debian.drdteam.org/drdteam.gpg | apt-key add -
 RUN apt-add-repository 'deb http://debian.drdteam.org/ stable multiverse' && apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y slade
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y eureka wadc deutex zandronum
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y eureka wadc deutex zandronum doom-wad-shareware
 
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y minetest minetest-data minetest-server minetestmapper
+
+RUN wget https://github.com/TrenchBroom/TrenchBroom/releases/download/v2022.1/TrenchBroom-Linux-v2022.1-Release.x86_64.deb
+RUN dpkg -i TrenchBroom-Linux-v2022.1-Release.x86_64.deb
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y qstat xqf darkplaces darkplaces-server fteqcc quake quake quake-server quake2 yamagi-quake2 yamagi-quake2-core
 
 #############
 ### stage_vnc
