@@ -269,7 +269,6 @@ WORKDIR "${HOME}"
 ### add '.bashrc' and similar resources
 COPY ./src/home "${HOME}"/
 
-
 ##################
 ### stage_chromium
 ##################
