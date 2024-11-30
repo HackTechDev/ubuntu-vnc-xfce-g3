@@ -145,7 +145,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y minetest minetest-data min
 RUN wget https://github.com/TrenchBroom/TrenchBroom/releases/download/v2022.1/TrenchBroom-Linux-v2022.1-Release.x86_64.deb
 RUN dpkg -i TrenchBroom-Linux-v2022.1-Release.x86_64.deb
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y qstat xqf darkplaces darkplaces-server fteqcc quake quake quake-server quake2 yamagi-quake2 yamagi-quake2-core
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y qstat xqf darkplaces darkplaces-server fteqcc quake quake quake-server quake2 yamagi-quake2 yamagi-quake2-core chocolate-doom doomsday uhexen2 uhexen2-common
 
 #############
 ### stage_vnc
